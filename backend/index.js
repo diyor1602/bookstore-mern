@@ -12,9 +12,8 @@ app.use(express.json());
 // Middleware for CORS
 app.use(cors());
 
-
 app.get("/", (req, res) => {
-  return res.status(234).send("Hello World 2 !");
+  return res.status(234).send("Server is running");
 });
 
 app.use("/books", booksRoute);
