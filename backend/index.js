@@ -72,7 +72,24 @@ app.put("/books/:id", async (req, res) => {
       return res.status(404).send({ message: "Book not found" });
     }
 
-    return res.status(200).send(result);
+    return res.status(200).send({ message: "Book updated" });
+  } catch (error) {
+    return res.status(500).send({ message: error.message });
+  }
+});
+
+// Route for deleting a book by ID
+app.delete("/books/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Book.findByIdAndDelete(id);
+
+    if (!result) {
+      return res.status(404).send({ message: "Book not found" });
+    }
+
+    return res.status(200).send({ message: "Book deleted" });
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
