@@ -12,6 +12,7 @@ const CreateBook = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+  const MAINURL = import.meta.env.VITE_MAIN_URL;
 
   const handleSaveBook = () => {
     const data = {
@@ -21,7 +22,7 @@ const CreateBook = () => {
     };
     setLoading(true);
     axios
-      .post("https://bookstore-mern-backend.vercel.app/books", data)
+      .post(`${MAINURL}/books`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book saved successfully", { variant: "success" });

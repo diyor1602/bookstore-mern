@@ -12,11 +12,12 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState("table");
+  const MAINURL = import.meta.env.VITE_MAIN_URL;
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://bookstore-mern-backend.vercel.app/books")
+      .get(`${MAINURL}/books`)
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);

@@ -8,11 +8,12 @@ const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const MAINURL = import.meta.env.VITE_MAIN_URL;
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://bookstore-mern-backend.vercel.app/books/${id}`)
+      .get(`${MAINURL}/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);

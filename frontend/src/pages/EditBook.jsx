@@ -13,11 +13,12 @@ const EditBook = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const MAINURL = import.meta.env.VITE_MAIN_URL;
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://bookstore-mern-backend.vercel.app/books/${id}`)
+      .get(`${MAINURL}/books/${id}`)
       .then((response) => {
         const { title, author, publishYear } = response.data;
         setTitle(title);
@@ -40,7 +41,7 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`https://bookstore-mern-backend.vercel.app/books/${id}`, data)
+      .put(`${MAINURL}/books/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book edited successfully", { variant: "success" });

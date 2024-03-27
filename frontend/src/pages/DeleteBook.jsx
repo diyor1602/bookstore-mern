@@ -10,10 +10,11 @@ const DeleteBook = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+  const MAINURL = import.meta.env.VITE_MAIN_URL;
   const handleDeleteBook = () => {
     setLoading(true);
     axios
-      .delete(`https://bookstore-mern-backend.vercel.app/books/${id}`)
+      .delete(`${MAINURL}/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book deleted successfully", { variant: "success" });
